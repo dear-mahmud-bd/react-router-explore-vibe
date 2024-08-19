@@ -10,6 +10,8 @@ import './index.css'
 import Home from './components/Home/Home.jsx';
 import Books from './components/Books/Books.jsx';
 import PagesToRead from './components/PagesToRead/PagesToRead.jsx';
+import BookDetails from './components/Books/BookDetails/BookDetails.jsx';
+import axios from 'axios';
 
 // React Router 
 const router = createBrowserRouter([
@@ -32,6 +34,18 @@ const router = createBrowserRouter([
       {
         path: "/all-books",
         element: <Books count={12}></Books>,
+      },
+      {
+        path: "/all-books/:bookId",
+        element: <BookDetails></BookDetails>,
+        loader: async () => {
+          try {
+            const res = await axios.get('/books.json');
+            return res.data;
+          } catch (error) {
+            throw new Response('Failed to load data', { status: error.response?.status || 500 });
+          }
+        }
       },
     ]
   },

@@ -9,8 +9,8 @@ const useFetchBooks = (url) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(url);
-                setData(response.data);
+                const res = await axios.get(url);
+                setData(res.data);
             } catch (err) {
                 setError(err);
             } finally {
@@ -20,7 +20,7 @@ const useFetchBooks = (url) => {
         // fetchData();
         const timer = setTimeout(() => {
             fetchData();
-        }, 1500);
+        }, 500);
         return () => clearTimeout(timer);
     }, [url]);
     

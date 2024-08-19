@@ -2,13 +2,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CiStar } from 'react-icons/ci';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const BookCard = ({ book }) => {
     
-    const { image, tags, bookName, author, category, rating } = book;
+    const { bookId, image, tags, bookName, author, category, rating } = book;
+
+    const navigate = useNavigate();
+    const handleBookDetails = (bookId) => {
+        // console.log("clicked", bookId);
+        navigate(`/all-books/${bookId}`); 
+    };
 
     return (
-        <div className="card bg-base-100 border">
+        <div onClick={()=>handleBookDetails(bookId)} className="card bg-base-100 border">
             <figure className="p-10 bg-gray-200 mx-8 mt-8 rounded-xl">
                 <img src={image} alt="Shoes" className="rounded-md h-60" />
             </figure>

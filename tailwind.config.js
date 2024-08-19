@@ -10,6 +10,9 @@ export default {
         customGreen: '#23BE0A',
         customBlue: '#59C6D2',
       },
+      screens:{
+        'mmd' : '450px',
+      },
     },
   },
   plugins: [
