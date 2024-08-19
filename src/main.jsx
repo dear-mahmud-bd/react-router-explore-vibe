@@ -14,6 +14,7 @@ import BookDetails from './components/Books/BookDetails/BookDetails.jsx';
 import axios from 'axios';
 import NotFound from './components/Shared/NotFound/NotFound.jsx';
 import ListedBooks from './components/ListedBooks/ListedBooks.jsx';
+import ContactUs from './components/ContactUs/ContactUs.jsx';
 
 // React Router 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/all-books",
         element: <Books count={12}></Books>,
+      },
+      {
+        path: "/contact-us",
+        element: <ContactUs></ContactUs>,
       },
       {
         path: "/all-books/:bookId",

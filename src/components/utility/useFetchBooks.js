@@ -17,11 +17,11 @@ const useFetchBooks = (url) => {
                 setLoading(false);
             }
         };
-        // fetchData();
-        const timer = setTimeout(() => {
-            fetchData();
-        }, 10);
-        return () => clearTimeout(timer);
+        fetchData();
+        // const timer = setTimeout(() => {
+        //     fetchData();
+        // }, 10);
+        // return () => clearTimeout(timer);
     }, [url]);
     
     return { data, loading, error };

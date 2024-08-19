@@ -16,7 +16,7 @@ const ListedBook = ({ book }) => {
                 </figure>
                 <div className='space-y-5 w-full flex-grow'>
                     <h2 className="text-xl font-bold mb-2">{bookName}</h2>
-                    <p className="text-gray-700 font-semibold mb-2">By : {author}</p>
+                    <p className="text-gray-700 font-semibold mb-2">By: {author}</p>
                     <div className="flex gap-2 mb-4 font-semibold items-center">
                         <span className="text-lg font-bold">Tag</span>
                         <span className="px-3 py-2 bg-green-100 rounded-full text-customGreen ">#{tags[0]}</span>

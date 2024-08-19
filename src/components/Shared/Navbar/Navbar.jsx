@@ -10,6 +10,7 @@ const Navbar = () => {
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/all-books">All Books</NavLink></li>
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/listed-books">Listed Books</NavLink></li>
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/pages-to-read">Pages to Read</NavLink></li>
+        <li><NavLink className={({ isActive }) => addClass(isActive)} to="/contact-us">Contact Us</NavLink></li>
     </>
 
     return (
@@ -17,7 +18,7 @@ const Navbar = () => {
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+                        <div tabIndex={0} role="button" className="btn btn-ghost xlmd:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
                             </svg>
@@ -28,12 +29,12 @@ const Navbar = () => {
                     </div>
                     <NavLink to="/" className="text-2xl font-bold">Book Vibe</NavLink>
                 </div>
-                <div className="navbar-center hidden md:flex">
+                <div className="navbar-center hidden xlmd:flex">
                     <ul className="menu menu-horizontal px-1 space-x-1">
                         {navLinks}
                     </ul>
                 </div>
-                <div className="navbar-end gap-2">
+                <div className="navbar-end gap-1">
                     <button className="btn bg-customGreen hover:bg-green-600 text-white font-semibold">Sign In</button>
                     <button className="btn bg-customBlue hover:bg-blue-400 text-white font-semibold">Sign Up</button>
                 </div>

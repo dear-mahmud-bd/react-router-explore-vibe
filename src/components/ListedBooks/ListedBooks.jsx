@@ -25,7 +25,7 @@ const ListedBooks = () => {
         setReadBooks(sortBooks(readBooks, criteria));
         setWishlistBooks(sortBooks(wishlistBooks, criteria));
     };
-    
+
     const handleSortChange = (e) => {
         const criteria = e.target.value;
         if (criteria === 'rating') {
@@ -43,7 +43,7 @@ const ListedBooks = () => {
                 <h1 className='text-center text-4xl font-bold'>Books</h1>
             </div>
 
-            <div className='my-10 flex justify-center items-center'>
+            <div className='my-5 flex justify-center items-center'>
                 <select onChange={handleSortChange} className="select select-bordered w-full max-w-xs bg-customGreen font-bold text-white border-0 text-center">
                     <option className='bg-gray-200 text-black' defaultValue>Sort By</option>
                     <option value="rating" className='bg-gray-200 text-black'>Rating</option>
