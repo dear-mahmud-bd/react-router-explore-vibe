@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
+import { getStoredBookIds, saveBookId } from '../../utility/useLocalStorage';
+import { toast } from 'react-toastify';
 
 const BookDetails = () => {
-    
+
     const books = useLoaderData();
     const { bookId } = useParams();
     const book = books.find(book => book.bookId === bookId);
@@ -18,8 +20,86 @@ const BookDetails = () => {
         );
     }
 
-    const {image, bookName, author, category, review, tags, totalPages, publisher, yearOfPublishing, rating} = book;
+    const { image, bookName, author, category, review, tags, totalPages, publisher, yearOfPublishing, rating } = book;
 
+
+
+
+
+
+
+    const handleButtonClick = (params) => {
+        const storedBookIds = getStoredBookIds(params);
+        const isBookSaved = storedBookIds.includes(bookId);
+        console.log(isBookSaved);
+        if (params === 'read') {
+            if (isBookSaved) {
+                toast.error('Already Added in Read', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                saveBookId(bookId, params);
+                toast.success('Added to Read', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            }
+        } else {
+            const storedReadBookIds = getStoredBookIds("read");
+            const isBookRead = storedReadBookIds.includes(bookId);
+            if (isBookRead) {
+                toast.error('Already Added in Read', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
+            } else {
+                if (isBookSaved) {
+                    toast.error('Already Added in Wishlist', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                } else {
+                    saveBookId(bookId, params);
+                    toast.success('Added to Wishlist', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            }
+        }
+        // console.log(storedBookIds);
+    };
     return (
         <div>
             <div className="hero">
@@ -50,12 +130,12 @@ const BookDetails = () => {
                                 <p>{totalPages}</p>
                                 <p>{publisher}</p>
                                 <p>{yearOfPublishing}</p>
-                                <p>{rating }</p>
+                                <p>{rating}</p>
                             </div>
                         </div>
                         <div className="flex gap-5 mt-5">
-                            <button className="btn btn-outline border-gray-400 hover:bg-customGreen hover:border-customGreen font-semibold">Read</button>
-                            <button className="btn bg-customBlue hover:bg-blue-400 text-white font-semibold">Wishlist</button>
+                            <button onClick={() => handleButtonClick("read")} className="btn btn-outline border-gray-400 hover:bg-customGreen hover:border-customGreen font-semibold">Read</button>
+                            <button onClick={() => handleButtonClick("wishlist")} className="btn bg-customBlue hover:bg-blue-400 text-white font-semibold">Wishlist</button>
                         </div>
                     </div>
                 </div>

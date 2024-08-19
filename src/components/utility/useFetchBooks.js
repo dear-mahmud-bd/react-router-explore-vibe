@@ -20,7 +20,7 @@ const useFetchBooks = (url) => {
         // fetchData();
         const timer = setTimeout(() => {
             fetchData();
-        }, 500);
+        }, 10);
         return () => clearTimeout(timer);
     }, [url]);
     
