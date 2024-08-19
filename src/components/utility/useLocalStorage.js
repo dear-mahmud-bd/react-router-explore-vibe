@@ -1,4 +1,4 @@
-// localStorageUtils.js
+
 const getStoredBookIds = (params) => {
     let storedBookIds;
     if (params === "Read") storedBookIds = localStorage.getItem('savedReadBookIds');
@@ -22,4 +22,17 @@ const saveBookId = (id, params) => {
     }
 };
 
-export { getStoredBookIds, saveBookId }
+const getMatchedBooks = (books, params) => {
+    const storedReadBookIds = getStoredBookIds(params);
+    const matchedBooks = [];
+    storedReadBookIds.forEach(bookId => {
+        const book = books.find(book => book.bookId === bookId);
+        if (book) {
+            matchedBooks.push(book);
+        }
+    });
+    return matchedBooks;
+};
+
+
+export { getStoredBookIds, saveBookId, getMatchedBooks }

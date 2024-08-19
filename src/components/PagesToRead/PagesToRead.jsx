@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import useFetchBooks from '../utility/useFetchBooks';
+import { getMatchedBooks } from '../utility/useLocalStorage';
 
 
 const getPath = (x, y, width, height) => {
@@ -20,16 +21,31 @@ const TriangleBar = ({ fill = '#8884d8', x = 0, y = 0, width = 0, height = 0 }) 
 const PagesToRead = () => {
 
     const { data: books, loading, error } = useFetchBooks('books.json');
-    if (loading) {
-        return <div className='flex items-center justify-center h-96'><span className="loading loading-dots loading-lg"></span></div>;
-    }
-    
-    // const [books, setBooks] = useState([]);
+    console.log(books);
+
+    const readBooks = getMatchedBooks(books, "Read");
+
+    // const storedReadBookIds = getStoredBookIds("Read");
+    // console.log(storedReadBookIds);
     // useEffect(() => {
-    //     axios.get('books.json')
-    //         .then(res => setBooks(res.data))
-    // }, [])
-    // console.log(books);
+    //     if (books && books.length > 0) {
+    //         const matchedBooks = [];
+
+    //         storedReadBookIds.forEach(bookId => {
+    //             const book = books.find(book => book.bookId === bookId);
+    //             if (book) {
+    //                 matchedBooks.push(book);
+    //             }
+    //         });
+
+    //         setReadBooks(matchedBooks);
+    //     }
+    // }, [books]);
+
+    console.log(readBooks);
+
+
+
 
 
     const getColor = (rating) => {
@@ -39,34 +55,39 @@ const PagesToRead = () => {
         return '#F44336';
     };
 
+    if (loading) {
+        return <div className='flex items-center justify-center h-96'><span className="loading loading-dots loading-lg"></span></div>;
+    }
     return (
         <div className='space-y-4'>
-            <div className='bg-gray-100 px-2 pt-4 pb-1 rounded-lg'>
-                <div style={{ width: '100%', height: 500 }}>
-                    <ResponsiveContainer>
-                        <BarChart
-                            data={books}
-                            margin={{
-                                top: 20,
-                                right: 30,
-                                left: 20,
-                                bottom: 5,
-                            }}
-                        >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="bookName" />
-                            <Tooltip />
-                            <YAxis dataKey="totalPages" />
-                            <Bar dataKey="totalPages" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
-                                {books.map((entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={getColor(entry.rating)} />
-                                ))}
-                            </Bar>
-                        </BarChart>
-                    </ResponsiveContainer>
+            {readBooks.length > 0 &&
+                <div className='bg-gray-100 px-2 pt-4 pb-1 rounded-lg'>
+                    <div style={{ width: '100%', height: 500 }}>
+                        <ResponsiveContainer>
+                            <BarChart
+                                data={readBooks}
+                                margin={{
+                                    top: 20,
+                                    right: 30,
+                                    left: 20,
+                                    bottom: 5,
+                                }}
+                            >
+                                <CartesianGrid strokeDasharray="3 3" />
+                                <XAxis dataKey="bookName" />
+                                <Tooltip />
+                                <YAxis dataKey="totalPages" />
+                                <Bar dataKey="totalPages" fill="#8884d8" shape={<TriangleBar />} label={{ position: 'top' }}>
+                                    {readBooks.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={getColor(entry.rating)} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                    <h1 className='text-3xl font-bold text-center mb-10'>Statistics of Books Read</h1>
                 </div>
-                <h1 className='text-3xl font-bold text-center mb-10'>Statistics of Books Read</h1>
-            </div>
+            }
             <div className='bg-gray-100 px-2 pt-4 pb-1 rounded-lg'>
                 <div style={{ width: '100%', height: 500 }}>
                     <ResponsiveContainer>
