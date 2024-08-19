@@ -9,6 +9,7 @@ import {
 import './index.css'
 import Home from './components/Home/Home.jsx';
 import Books from './components/Books/Books.jsx';
+import PagesToRead from './components/PagesToRead/PagesToRead.jsx';
 
 // React Router 
 const router = createBrowserRouter([
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/pages-to-read",
-        element: <h1>Pages To Read</h1>,
+        element: <PagesToRead></PagesToRead>,
       },
       {
         path: "/all-books",

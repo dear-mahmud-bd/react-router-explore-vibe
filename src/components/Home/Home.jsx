@@ -2,6 +2,7 @@
 import React from 'react';
 import bannerImg from '../../assets/banner.png'
 import Books from '../Books/Books';
+import { NavLink } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -12,7 +13,7 @@ const Home = () => {
                     <div className='space-y-10'>
                         <h1 className="text-5xl font-bold">Books to freshen up your bookshelf</h1>
                         <button className="text-xl font-bold px-8 py-4 bg-customGreen rounded-lg text-white hover:bg-green-600">
-                            View The List
+                            <NavLink to="/listed-books">View The List</NavLink>
                         </button>
                     </div>
                 </div>
