@@ -13,6 +13,7 @@ import PagesToRead from './components/PagesToRead/PagesToRead.jsx';
 import BookDetails from './components/Books/BookDetails/BookDetails.jsx';
 import axios from 'axios';
 import NotFound from './components/Shared/NotFound/NotFound.jsx';
+import ListedBooks from './components/ListedBooks/ListedBooks.jsx';
 
 // React Router 
 const router = createBrowserRouter([
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/listed-books",
-        element: <h1>Listed Book Part</h1>,
+        element: <ListedBooks></ListedBooks>,
       },
       {
         path: "/pages-to-read",
