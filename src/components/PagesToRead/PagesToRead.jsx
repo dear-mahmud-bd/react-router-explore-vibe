@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import useFetchBooks from '../../utility/useFetchBooks';
+import useFetchBooks from '../utility/useFetchBooks';
 
 
 const getPath = (x, y, width, height) => {

@@ -12,6 +12,7 @@ import Books from './components/Books/Books.jsx';
 import PagesToRead from './components/PagesToRead/PagesToRead.jsx';
 import BookDetails from './components/Books/BookDetails/BookDetails.jsx';
 import axios from 'axios';
+import NotFound from './components/Shared/NotFound/NotFound.jsx';
 
 // React Router 
 const router = createBrowserRouter([
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             throw new Response('Failed to load data', { status: error.response?.status || 500 });
           }
         }
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ]
   },

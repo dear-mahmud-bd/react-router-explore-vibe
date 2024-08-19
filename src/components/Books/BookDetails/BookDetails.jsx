@@ -3,10 +3,20 @@ import React from 'react';
 import { useLoaderData, useParams } from 'react-router-dom';
 
 const BookDetails = () => {
+    
     const books = useLoaderData();
     const { bookId } = useParams();
     const book = books.find(book => book.bookId === bookId);
     console.log(book, bookId);
+
+    if (!book) {
+        return (
+            <div className="text-center mt-10">
+                <h1 className="text-4xl font-bold text-red-600">Book Not Found</h1>
+                <p className="text-lg font-semibold text-gray-600 mt-2">Sorry, the book you are looking for does not exist.</p>
+            </div>
+        );
+    }
 
     const {image, bookName, author, category, review, tags, totalPages, publisher, yearOfPublishing, rating} = book;
 

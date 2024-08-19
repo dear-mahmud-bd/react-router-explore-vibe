@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import BookCard from './BookCard/BookCard';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
-import useFetchBooks from '../../utility/useFetchBooks';
+import useFetchBooks from '../utility/useFetchBooks';
 
 const Books = ({ count }) => {
 
