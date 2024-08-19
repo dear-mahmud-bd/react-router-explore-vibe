@@ -1,7 +1,7 @@
 // localStorageUtils.js
 const getStoredBookIds = (params) => {
     let storedBookIds;
-    if (params === 'read') storedBookIds = localStorage.getItem('savedReadBookIds');
+    if (params === "Read") storedBookIds = localStorage.getItem('savedReadBookIds');
     else storedBookIds = localStorage.getItem('savedWishlistBookIds');
     if (storedBookIds) {
         return JSON.parse(storedBookIds);
@@ -14,7 +14,7 @@ const saveBookId = (id, params) => {
     const exists = storedBookIds.find(bookId => bookId === id);
     if (!exists) {
         storedBookIds.push(id);
-        if (params === 'read') {
+        if (params === "Read") {
             localStorage.setItem('savedReadBookIds', JSON.stringify(storedBookIds));
         }else{
             localStorage.setItem('savedWishlistBookIds', JSON.stringify(storedBookIds));

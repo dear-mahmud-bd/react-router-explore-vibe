@@ -23,83 +23,43 @@ const BookDetails = () => {
     const { image, bookName, author, category, review, tags, totalPages, publisher, yearOfPublishing, rating } = book;
 
 
-
-
-
-
-
+    const showToast = (type, message) => {
+        toast[type](message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    };
+    const handleToastMessage = (isBookSaved, params) => {
+        if (isBookSaved) {
+            showToast('error', `Already Added in ${params}`);
+        } else {
+            saveBookId(bookId, params);
+            showToast('success', `Added to ${params}`);
+        }
+    };
     const handleButtonClick = (params) => {
         const storedBookIds = getStoredBookIds(params);
         const isBookSaved = storedBookIds.includes(bookId);
-        console.log(isBookSaved);
-        if (params === 'read') {
-            if (isBookSaved) {
-                toast.error('Already Added in Read', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            } else {
-                saveBookId(bookId, params);
-                toast.success('Added to Read', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-            }
+        if (params === "Read") {
+            handleToastMessage(isBookSaved, params);
         } else {
-            const storedReadBookIds = getStoredBookIds("read");
+            const storedReadBookIds = getStoredBookIds("Read");
             const isBookRead = storedReadBookIds.includes(bookId);
             if (isBookRead) {
-                toast.error('Already Added in Read', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
+                handleToastMessage(isBookRead, "Read");
             } else {
-                if (isBookSaved) {
-                    toast.error('Already Added in Wishlist', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                } else {
-                    saveBookId(bookId, params);
-                    toast.success('Added to Wishlist', {
-                        position: "top-right",
-                        autoClose: 5000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "light",
-                    });
-                }
+                handleToastMessage(isBookSaved, params);
             }
         }
-        // console.log(storedBookIds);
     };
+
+
     return (
         <div>
             <div className="hero">
@@ -134,8 +94,8 @@ const BookDetails = () => {
                             </div>
                         </div>
                         <div className="flex gap-5 mt-5">
-                            <button onClick={() => handleButtonClick("read")} className="btn btn-outline border-gray-400 hover:bg-customGreen hover:border-customGreen font-semibold">Read</button>
-                            <button onClick={() => handleButtonClick("wishlist")} className="btn bg-customBlue hover:bg-blue-400 text-white font-semibold">Wishlist</button>
+                            <button onClick={() => handleButtonClick("Read")} className="btn btn-outline border-gray-400 hover:bg-customGreen hover:border-customGreen font-semibold">Read</button>
+                            <button onClick={() => handleButtonClick("Wishlist")} className="btn bg-customBlue hover:bg-blue-400 text-white font-semibold">Wishlist</button>
                         </div>
                     </div>
                 </div>
