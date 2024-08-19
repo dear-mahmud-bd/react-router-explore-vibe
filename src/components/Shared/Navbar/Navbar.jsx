@@ -9,6 +9,7 @@ const Navbar = () => {
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/">Home</NavLink></li>
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/listed-books">Listed Books</NavLink></li>
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/pages-to-read">Pages to Read</NavLink></li>
+        <li><NavLink className={({ isActive }) => addClass(isActive)} to="/all-books">All Books</NavLink></li>
     </>
 
     return (

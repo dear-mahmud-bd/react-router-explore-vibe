@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 import Home from './components/Home/Home.jsx';
+import Books from './components/Books/Books.jsx';
 
 // React Router 
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/pages-to-read",
         element: <h1>Pages To Read</h1>,
+      },
+      {
+        path: "/all-books",
+        element: <Books count={12}></Books>,
       },
     ]
   },
